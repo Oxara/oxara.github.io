@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <title>Sayfa Bulunamadı — Oxara</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        body { font-family: -apple-system, sans-serif; background: #0f1117; color: #e6edf3; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-        h1 { font-size: 4rem; margin-bottom: 0.5rem; }
-        p { color: #8b949e; margin-bottom: 1.5rem; }
-        a { color: #58a6ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sayfa Bulunamadı — Oxara</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/base/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/theme/theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/docs-layout/docs-layout.css">
+<style>
+:root { --brand: #3157c8; --brand-light: #466de0; --brand-subtle: rgba(49, 87, 200, .07); --brand-border: rgba(49, 87, 200, .22); }
+[data-theme="dark"] { --brand: #8aa4ff; --brand-light: #a9bbff; --brand-subtle: rgba(138, 164, 255, .1); --brand-border: rgba(138, 164, 255, .3); }
+.docs-brand-mark { color: #fff; background: #3157c8; }
+.not-found { display: grid; width: min(680px, calc(100% - 2rem)); min-height: calc(100vh - 64px); margin: 0 auto; place-content: center; text-align: center; }
+.not-found-code { margin: 0; color: var(--brand); font-size: clamp(4rem, 14vw, 8rem); font-weight: 800; letter-spacing: -.08em; line-height: 1; }
+.not-found h1 { margin: .75rem 0 .6rem; font-size: clamp(1.6rem, 4vw, 2.3rem); }
+.not-found p { margin: 0 auto 1.5rem; color: var(--text-muted); line-height: 1.65; }
+.not-found a { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: .7rem 1rem; color: #fff; background: #3157c8; border-radius: 8px; font-weight: 650; text-decoration: none; }
+</style>
 </head>
 <body>
-    <div>
-        <h1>404</h1>
-        <p>Aradığınız sayfa bulunamadı.</p>
-        <a href="/">← Ana sayfaya dön</a>
-    </div>
+<header class="docs-topbar"><div class="docs-topbar-inner"><a class="docs-brand" href="/"><span class="docs-brand-mark">EÖ</span><span>Erdem Özkara</span></a><div class="docs-top-actions"><button class="theme-toggle" type="button" onclick="theme.toggleTheme()" aria-label="Koyu temaya geç"><span class="theme-toggle-label">Koyu tema</span></button></div></div></header>
+<main class="not-found">
+<p class="not-found-code">404</p>
+<h1>Bu sayfa bulunamadı.</h1>
+<p>Bağlantı değişmiş veya içerik taşınmış olabilir. Portfolyoya ve seçili çalışmalara ana sayfadan ulaşabilirsiniz.</p>
+<div><a href="/">Ana sayfaya dön</a></div>
+</main>
+<script src="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/theme/theme.js"></script>
 </body>
 </html>

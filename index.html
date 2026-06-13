@@ -1,273 +1,240 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Erdem Özkara — Backend Geliştirici Rehberleri | Oxara</title>
-    <meta name="description" content="Erdem Özkara tarafından hazırlanan üretim kalitesinde Türkçe backend geliştirici rehberleri. EF Core, Redis, RabbitMQ, Elasticsearch ve .NET ekosistemi." />
-    <meta name="keywords" content="Erdem Özkara, backend, .NET, C#, EF Core, Redis, RabbitMQ, Elasticsearch, geliştirici rehberi, Türkçe" />
-    <meta name="author" content="Erdem Özkara" />
-    <link rel="canonical" href="https://oxara.github.io/" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Erdem Özkara — Backend Geliştirici Rehberleri | Oxara" />
-    <meta property="og:description" content="Erdem Özkara tarafından hazırlanan üretim kalitesinde Türkçe backend geliştirici rehberleri." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://oxara.github.io/" />
-    <meta property="og:locale" content="tr_TR" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Erdem Özkara — Backend Geliştirici Rehberleri | Oxara" />
-    <meta name="twitter:description" content="Erdem Özkara tarafından hazırlanan üretim kalitesinde Türkçe backend geliştirici rehberleri." />
-
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Erdem Özkara — Oxara",
-        "url": "https://oxara.github.io/",
-        "description": "Erdem Özkara tarafından hazırlanan üretim kalitesinde Türkçe backend geliştirici rehberleri.",
-        "author": {
-            "@type": "Person",
-            "name": "Erdem Özkara",
-            "jobTitle": "Backend Software Architect",
-            "url": "https://www.linkedin.com/in/erdemozkara/"
-        }
-    }
-    </script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0c10;
-            color: #e6edf3;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2.5rem 1.5rem;
-        }
-        .container { max-width: 1100px; width: 100%; }
-        header { text-align: center; margin-bottom: 2.5rem; }
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: #f0f3f6;
-        }
-        .subtitle { color: #7d8590; font-size: 1rem; line-height: 1.5; }
-        .section-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #7d8590;
-            margin-bottom: 0.75rem;
-        }
-        .grid-main {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-        .grid-main .card:nth-child(4),
-        .grid-main .card:nth-child(5) {
-            grid-column: span 1;
-        }
-        .grid-bottom {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 0;
-        }
-        .grid-bottom .cards {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.1rem 1.2rem;
-            background: #13161d;
-            border: 1px solid #1e2430;
-            border-radius: 12px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: var(--accent);
-            border-radius: 12px 0 0 12px;
-            opacity: 0.7;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px -4px var(--glow);
-            border-color: var(--accent);
-        }
-        .card-icon {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1e2430;
-            border-radius: 10px;
-            filter: grayscale(1) opacity(0.6);
-            transition: filter 0.3s;
-        }
-        .card:hover .card-icon {
-            filter: grayscale(0) opacity(1);
-        }
-        .card-body { flex: 1; min-width: 0; }
-        .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
-        .card-desc {
-            font-size: 0.78rem;
-            color: #7d8590;
-            line-height: 1.35;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .card-badge {
-            font-size: 0.6rem;
-            background: color-mix(in srgb, var(--accent) 15%, transparent);
-            color: var(--accent);
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            white-space: nowrap;
-            flex-shrink: 0;
-            letter-spacing: 0.02em;
-        }
-
-        /* Brand colors */
-        .card { --accent: #3b82f6; --glow: #3b82f620; }
-        .card:hover { --glow: #3b82f635; }
-
-        footer {
-            text-align: center;
-            margin-top: 2.5rem;
-            color: #484f58;
-            font-size: 0.82rem;
-        }
-        footer a { color: #58a6ff; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-
-        @media (max-width: 800px) {
-            .grid-main { grid-template-columns: repeat(2, 1fr); }
-            .grid-main .card:nth-child(5) { grid-column: span 2; }
-        }
-        @media (max-width: 550px) {
-            .grid-main { grid-template-columns: 1fr; }
-            .grid-main .card:nth-child(5) { grid-column: span 1; }
-            .grid-bottom { grid-template-columns: 1fr; gap: 1.5rem; }
-            h1 { font-size: 1.8rem; }
-            .card { padding: 0.9rem 1rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erdem Özkara — Backend Developer</title>
+<meta name="description" content="Erdem Özkara'nın kişisel portfolyosu. .NET, dağıtık sistemler, veri erişimi, mesajlaşma, önbellekleme, arama ve teknik dokümantasyon çalışmaları.">
+<meta name="keywords" content="Erdem Özkara, backend, .NET, C#, EF Core, Redis, RabbitMQ, Elasticsearch, Hangfire, Türkçe geliştirici rehberi">
+<meta name="author" content="Erdem Özkara">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oxara.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Erdem Özkara — Backend Developer">
+<meta property="og:description" content=".NET, dağıtık sistemler ve teknik dokümantasyon üzerine çalışan bilgisayar mühendisi.">
+<meta property="og:url" content="https://oxara.github.io/">
+<meta property="og:site_name" content="Oxara">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://oxara.github.io/og-image.svg">
+<meta property="og:image:type" content="image/svg+xml">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Erdem Özkara, Backend Developer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Erdem Özkara — Backend Developer">
+<meta name="twitter:description" content=".NET, dağıtık sistemler ve teknik dokümantasyon üzerine çalışan bilgisayar mühendisi.">
+<meta name="twitter:image" content="https://oxara.github.io/og-image.svg">
+<meta name="twitter:image:alt" content="Erdem Özkara, Backend Developer">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/base/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/theme/theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/docs-layout/docs-layout.css">
+<style>
+:root {
+    --brand: #3157c8;
+    --brand-light: #466de0;
+    --brand-subtle: rgba(49, 87, 200, .07);
+    --brand-border: rgba(49, 87, 200, .22);
+}
+[data-theme="dark"] {
+    --brand: #8aa4ff;
+    --brand-light: #a9bbff;
+    --brand-subtle: rgba(138, 164, 255, .1);
+    --brand-border: rgba(138, 164, 255, .3);
+}
+.docs-brand-mark { color: #fff; background: #3157c8; }
+.portal-main { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 5rem 0 4rem; }
+.portal-hero { max-width: 900px; padding: 2.25rem 0 3.5rem; }
+.portal-hero h1 { max-width: 760px; margin: .35rem 0 1rem; font-size: clamp(2.4rem, 6vw, 4.6rem); letter-spacing: -.055em; line-height: 1.02; }
+.portal-hero > p:not(.docs-eyebrow) { max-width: 680px; color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.7; }
+.portal-intro { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: 1rem; margin-bottom: 4rem; }
+.portal-intro-panel { padding: 1.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.portal-intro-panel h2 { margin: .25rem 0 .8rem; font-size: 1.35rem; letter-spacing: -.02em; }
+.portal-intro-panel p { margin: 0; color: var(--text-muted); line-height: 1.7; }
+.portal-intro-panel p + p { margin-top: .75rem; }
+.portal-focus-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.portal-focus-list span { padding: .4rem .6rem; color: var(--text-muted); background: var(--surface-muted); border-radius: 5px; font-size: .75rem; font-weight: 650; }
+.portal-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.portal-action { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .7rem 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: .9rem; font-weight: 650; text-decoration: none; }
+.portal-action-primary { color: #fff; background: #3157c8; border-color: #3157c8; }
+.portal-action:hover { border-color: var(--brand); text-decoration: none; transform: translateY(-1px); }
+.portal-section { margin-bottom: 4rem; }
+.portal-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.portal-section-heading h2 { margin: .2rem 0 0; font-size: clamp(1.55rem, 3vw, 2rem); letter-spacing: -.025em; }
+.portal-section-note { max-width: 430px; color: var(--text-muted); font-size: .86rem; line-height: 1.55; text-align: right; }
+.portal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.portal-grid-secondary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.portal-card { position: relative; display: flex; min-height: 210px; flex-direction: column; padding: 1.35rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; overflow: hidden; }
+.portal-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--card-brand, var(--brand)); }
+.portal-card:hover { border-color: var(--card-brand, var(--brand)); box-shadow: 0 14px 35px rgba(15, 23, 42, .09); transform: translateY(-2px); text-decoration: none; }
+[data-theme="dark"] .portal-card:hover { box-shadow: 0 14px 35px rgba(0, 0, 0, .24); }
+.portal-card-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.portal-mark { display: inline-flex; min-width: 38px; height: 38px; align-items: center; justify-content: center; padding: 0 .55rem; color: var(--card-brand, var(--brand)); background: color-mix(in srgb, var(--card-brand, var(--brand)) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--card-brand, var(--brand)) 30%, var(--border)); border-radius: 8px; font-size: .72rem; font-weight: 800; letter-spacing: -.02em; }
+.portal-type { color: var(--text-muted); font-size: .68rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.portal-card h3 { margin: 0 0 .55rem; font-size: 1.08rem; letter-spacing: -.015em; }
+.portal-card p { margin: 0; color: var(--text-muted); font-size: .86rem; line-height: 1.55; }
+.portal-card-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: 1.25rem; }
+.portal-chip { padding: .24rem .45rem; color: var(--text-muted); background: var(--surface-muted); border-radius: 4px; font-size: .66rem; font-weight: 650; }
+.portal-card-ef { --card-brand: #6848b8; }
+.portal-card-redis { --card-brand: #c92f27; }
+.portal-card-rabbit { --card-brand: #c85a09; }
+.portal-card-elastic { --card-brand: #137b80; }
+.portal-card-hangfire { --card-brand: #5b4bb7; }
+.portal-card-time { --card-brand: #24658f; }
+.portal-card-template { --card-brand: #3157c8; }
+.portal-card-package { --card-brand: #08734c; }
+.portal-footer { padding: 1.5rem 0 0; color: var(--text-muted); border-top: 1px solid var(--border); font-size: .82rem; }
+.portal-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.portal-footer-links { display: flex; gap: 1rem; }
+.portal-footer a { color: var(--text-muted); }
+.portal-footer a:hover { color: var(--brand); }
+@media (max-width: 900px) {
+    .portal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .portal-intro { grid-template-columns: 1fr; }
+    .portal-section-heading { align-items: start; flex-direction: column; }
+    .portal-section-note { text-align: left; }
+}
+@media (max-width: 620px) {
+    .portal-main { width: min(100% - 1.25rem, 1180px); padding-top: 3.5rem; }
+    .portal-hero { padding-bottom: 3rem; }
+    .portal-grid, .portal-grid-secondary { grid-template-columns: 1fr; }
+    .portal-card { min-height: 0; }
+    .portal-footer-inner { align-items: start; flex-direction: column; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "name": "Erdem Özkara — Backend Developer",
+  "url": "https://oxara.github.io/",
+  "description": "Erdem Özkara'nın kişisel portfolyosu ve seçili teknik çalışmaları.",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Erdem Özkara",
+    "url": "https://oxara.github.io/",
+    "jobTitle": "Backend Developer",
+    "knowsAbout": [".NET", "ASP.NET Core", "Distributed Systems", "Entity Framework Core", "Redis", "RabbitMQ", "Elasticsearch", "Hangfire"],
+    "sameAs": [
+      "https://github.com/Oxara",
+      "https://www.linkedin.com/in/erdemozkara/"
+    ]
+  }
+}
+</script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Oxara</h1>
-            <p class="subtitle">Ölçeklenebilir .NET backend sistemleri için<br/>üretim kalitesinde Türkçe geliştirici rehberleri</p>
-        </header>
+<a class="skip-link" href="#main-content">İçeriğe atla</a>
+<header class="docs-topbar">
+<div class="docs-topbar-inner">
+<a class="docs-brand" href="/"><span class="docs-brand-mark">EÖ</span><span>Erdem Özkara</span></a>
+<nav class="docs-top-links" aria-label="Üst navigasyon"><a href="#hakkimda">Hakkımda</a><a href="#calismalar">Çalışmalar</a><a href="#kaynaklar">Kaynaklar</a></nav>
+<div class="docs-top-actions"><button class="theme-toggle" type="button" onclick="theme.toggleTheme()" aria-label="Koyu temaya geç"><span class="theme-toggle-label">Koyu tema</span></button></div>
+</div>
+</header>
 
-        <div class="section-title">Handbook'lar</div>
-        <div class="grid-main">
-            <a class="card card--efcore" href="https://oxara.github.io/efcore-handbook/">
-                <span class="card-icon">🗃️</span>
-                <div class="card-body">
-                    <div class="card-title">EF Core Handbook</div>
-                    <div class="card-desc">EF Core 8/9/10 — Sorgular, migration, performans, ilişkiler, interceptor'lar</div>
-                </div>
-                <span class="card-badge">.NET 10</span>
-            </a>
-            <a class="card card--redis" href="https://oxara.github.io/redis-handbook/">
-                <span class="card-icon">⚡</span>
-                <div class="card-body">
-                    <div class="card-title">Redis Handbook</div>
-                    <div class="card-desc">Cache stratejileri, pub/sub, veri yapıları, clustering, Lua scripting</div>
-                </div>
-                <span class="card-badge">Redis 7+</span>
-            </a>
-            <a class="card card--rabbitmq" href="https://oxara.github.io/rabbitmq-handbook/">
-                <span class="card-icon">🐇</span>
-                <div class="card-body">
-                    <div class="card-title">RabbitMQ Handbook</div>
-                    <div class="card-desc">Mesajlaşma kalıpları, kuyruklar, exchange'ler, MassTransit</div>
-                </div>
-                <span class="card-badge">.NET 8+</span>
-            </a>
-            <a class="card card--elastic" href="https://oxara.github.io/elasticsearch-handbook/">
-                <span class="card-icon">🔍</span>
-                <div class="card-body">
-                    <div class="card-title">Elasticsearch Handbook</div>
-                    <div class="card-desc">İndeksleme, sorgular, aggregation, cluster yönetimi</div>
-                </div>
-                <span class="card-badge">ES 9.4</span>
-            </a>
-            <a class="card card--hangfire" href="https://oxara.github.io/hangfire-handbook/">
-                <span class="card-icon">⏰</span>
-                <div class="card-body">
-                    <div class="card-title">Hangfire Handbook</div>
-                    <div class="card-desc">Background jobs, recurring tasks, dashboard, storage, scaling</div>
-                </div>
-                <span class="card-badge">.NET 8+</span>
-            </a>
-        </div>
+<main class="portal-main" id="main-content" tabindex="-1">
+<section class="portal-hero">
+<p class="docs-eyebrow">ERDEM ÖZKARA · BACKEND DEVELOPER</p>
+<h1>Üretimde çalışan backend sistemleri geliştiriyorum.</h1>
+<p>.NET ekosisteminde dağıtık sistemler, veri erişimi, mesajlaşma, önbellekleme ve arama altyapıları üzerine çalışan bir bilgisayar mühendisiyim.</p>
+<div class="portal-actions">
+<a class="portal-action portal-action-primary" href="#calismalar">Çalışmalarımı incele</a>
+<a class="portal-action" href="https://www.linkedin.com/in/erdemozkara/">LinkedIn</a>
+<a class="portal-action" href="https://github.com/Oxara">GitHub</a>
+</div>
+</section>
 
-        <div class="grid-bottom">
-            <div>
-                <div class="section-title">Makaleler</div>
-                <div class="cards">
-                    <a class="card card--timezone" href="https://oxara.github.io/timezone-article/">
-                        <span class="card-icon">🕐</span>
-                        <div class="card-body">
-                            <div class="card-title">Uluslararası Zaman Yönetimi</div>
-                            <div class="card-desc">Zaman dilimleri, UTC, DST, IANA veritabanı ve yazılımcı rehberi</div>
-                        </div>
-                        <span class="card-badge">Makale</span>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="section-title">Paketler</div>
-                <div class="cards">
-                    <a class="card card--nuget" href="https://www.nuget.org/packages/Oxtensions">
-                        <span class="card-icon">📦</span>
-                        <div class="card-body">
-                            <div class="card-title">Oxtensions</div>
-                            <div class="card-desc">.NET Extension Libraries — Yeniden kullanılabilir yardımcı uzantılar</div>
-                        </div>
-                        <span class="card-badge">NuGet</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+<section class="portal-intro" id="hakkimda">
+<div class="portal-intro-panel">
+<p class="docs-eyebrow">HAKKIMDA</p>
+<h2>Kodun yanında, bilginin kalıcılığıyla da ilgileniyorum.</h2>
+<p>Teknik kararları yalnızca çalışan koda değil; anlaşılır, sürdürülebilir ve ekip içinde aktarılabilir yapılara dönüştürmeye önem veriyorum.</p>
+<p>Bu portfolyodaki handbooklar, makaleler ve açık kaynak araçlar; problem çözme yaklaşımımın ve üretim deneyimine verdiğim önemin çıktılarıdır.</p>
+</div>
+<div class="portal-intro-panel">
+<p class="docs-eyebrow">ÇALIŞMA ALANLARI</p>
+<h2>Backend ve sistem tasarımı</h2>
+<div class="portal-focus-list" aria-label="Teknik çalışma alanları">
+<span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>Redis</span><span>RabbitMQ</span><span>Elasticsearch</span><span>Hangfire</span><span>Docker</span>
+</div>
+</div>
+</section>
 
-        <footer>
-            <a href="https://github.com/Oxara">GitHub</a> · <a href="https://www.linkedin.com/in/erdemozkara/">LinkedIn</a>
-            <p style="margin-top: 0.5rem;">Erdem Özkara</p>
-        </footer>
-    </div>
+<section class="portal-section" id="calismalar">
+<div class="portal-section-heading">
+<div><p class="docs-eyebrow">SEÇİLİ ÇALIŞMALAR</p><h2>Teknik yayınlar</h2></div>
+<p class="portal-section-note">Araştırdığım ve uygulamada kullandığım konuları, başka geliştiricilerin de yararlanabileceği kalıcı başvuru kaynaklarına dönüştürüyorum.</p>
+</div>
+<div class="portal-grid">
+<a class="portal-card portal-card-ef" href="https://oxara.github.io/efcore-handbook/">
+<div class="portal-card-top"><span class="portal-mark">EF</span><span class="portal-type">Handbook</span></div>
+<h3>EF Core Geliştirici El Kitabı</h3>
+<p>Veri modelleme, sorgulama, migrations, performans ve production uygulama kalıpları.</p>
+<div class="portal-card-meta"><span class="portal-chip">EF Core 8–10</span><span class="portal-chip">52 konu</span></div>
+</a>
+<a class="portal-card portal-card-redis" href="https://oxara.github.io/redis-handbook/">
+<div class="portal-card-top"><span class="portal-mark">R</span><span class="portal-type">Handbook</span></div>
+<h3>Redis Geliştirici El Kitabı</h3>
+<p>Caching, veri yapıları, messaging, ölçekleme, dayanıklılık ve production operasyonları.</p>
+<div class="portal-card-meta"><span class="portal-chip">Redis 8</span><span class="portal-chip">32 konu</span></div>
+</a>
+<a class="portal-card portal-card-rabbit" href="https://oxara.github.io/rabbitmq-handbook/">
+<div class="portal-card-top"><span class="portal-mark">RMQ</span><span class="portal-type">Handbook</span></div>
+<h3>RabbitMQ Geliştirici El Kitabı</h3>
+<p>Kuyruklar, exchange yapıları, güvenilir mesajlaşma, ölçekleme ve .NET entegrasyonu.</p>
+<div class="portal-card-meta"><span class="portal-chip">RabbitMQ 4.x</span><span class="portal-chip">16 konu</span></div>
+</a>
+<a class="portal-card portal-card-elastic" href="https://oxara.github.io/elasticsearch-handbook/">
+<div class="portal-card-top"><span class="portal-mark">ES</span><span class="portal-type">Handbook</span></div>
+<h3>Elasticsearch Geliştirici El Kitabı</h3>
+<p>Arama mimarisi, Query DSL, aggregations, shard stratejisi, güvenlik ve .NET entegrasyonu.</p>
+<div class="portal-card-meta"><span class="portal-chip">Elasticsearch 9</span><span class="portal-chip">24 konu</span></div>
+</a>
+<a class="portal-card portal-card-hangfire" href="https://oxara.github.io/hangfire-handbook/">
+<div class="portal-card-top"><span class="portal-mark">HF</span><span class="portal-type">Handbook</span></div>
+<h3>Hangfire Geliştirici El Kitabı</h3>
+<p>Arka plan işleri, retry politikaları, storage, gözlemlenebilirlik, güvenlik ve ölçekleme.</p>
+<div class="portal-card-meta"><span class="portal-chip">Hangfire 1.8</span><span class="portal-chip">15 konu</span></div>
+</a>
+</div>
+</section>
 
-    <!-- GoatCounter Analytics -->
-    <script data-goatcounter="https://oxara.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<section class="portal-section" id="kaynaklar">
+<div class="portal-section-heading">
+<div><p class="docs-eyebrow">AÇIK KAYNAK VE YAZILAR</p><h2>Destekleyici üretimler</h2></div>
+<p class="portal-section-note">Belirli problemleri derinleştiren yazılar ve kendi çalışma süreçlerimde ortaya çıkan yeniden kullanılabilir araçlar.</p>
+</div>
+<div class="portal-grid portal-grid-secondary">
+<a class="portal-card portal-card-time" href="https://oxara.github.io/timezone-article/">
+<div class="portal-card-top"><span class="portal-mark">TZ</span><span class="portal-type">Makale</span></div>
+<h3>Uluslararası Zaman Yönetimi</h3>
+<p>UTC, DST, IANA zaman dilimi veritabanı ve ISO 8601 üzerine uygulamalı teknik rehber.</p>
+<div class="portal-card-meta"><span class="portal-chip">Tarih ve saat</span><span class="portal-chip">Teknik makale</span></div>
+</a>
+<a class="portal-card portal-card-template" href="https://github.com/Oxara/Oxara.DocumentTemplate">
+<div class="portal-card-top"><span class="portal-mark">DT</span><span class="portal-type">Araç</span></div>
+<h3>Oxara.DocumentTemplate</h3>
+<p>Çok sayfalı statik teknik dokümantasyonlar için ortak UI, tema, arama ve yayın altyapısı.</p>
+<div class="portal-card-meta"><span class="portal-chip">Dokümantasyon</span><span class="portal-chip">Açık kaynak</span></div>
+</a>
+<a class="portal-card portal-card-package" href="https://www.nuget.org/packages/Oxtensions">
+<div class="portal-card-top"><span class="portal-mark">OX</span><span class="portal-type">NuGet</span></div>
+<h3>Oxtensions</h3>
+<p>Günlük backend geliştirme ihtiyaçları için yeniden kullanılabilir .NET extension kütüphanesi.</p>
+<div class="portal-card-meta"><span class="portal-chip">.NET</span><span class="portal-chip">NuGet</span></div>
+</a>
+</div>
+</section>
+
+<footer class="portal-footer">
+<div class="portal-footer-inner">
+<span>Erdem Özkara · Backend Developer</span>
+<nav class="portal-footer-links" aria-label="Alt navigasyon"><a href="https://github.com/Oxara">GitHub</a><a href="https://www.linkedin.com/in/erdemozkara/">LinkedIn</a></nav>
+</div>
+</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/gh/Oxara/Oxara.DocumentTemplate@refs/tags/v1.0.0/features/theme/theme.js"></script>
+<script data-goatcounter="https://oxara.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

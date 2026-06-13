@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+<title id="title">Erdem Özkara, Backend Developer</title>
+<desc id="description">Erdem Özkara'nın kişisel portfolyosu ve seçili teknik çalışmaları.</desc>
+<defs>
+<linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#172554"/>
+<stop offset="1" stop-color="#3157c8"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#background)"/>
+<rect x="78" y="86" width="82" height="82" rx="18" fill="#fff" fill-opacity=".14"/>
+<text x="119" y="139" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="700">EÖ</text>
+<text x="78" y="285" fill="#fff" font-family="Arial, sans-serif" font-size="72" font-weight="700">Erdem Özkara</text>
+<text x="78" y="360" fill="#dbeafe" font-family="Arial, sans-serif" font-size="34">Backend Developer</text>
+<text x="78" y="440" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="24">.NET · Dağıtık sistemler · Teknik dokümantasyon</text>
+</svg>
